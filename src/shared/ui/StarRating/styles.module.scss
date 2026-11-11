@@ -1,0 +1,23 @@
+.stars {
+  display: flex;
+  gap: 6px;
+}
+
+.star {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.15);
+  padding: 2px;
+  transition: color 0.1s ease, transform 0.1s ease;
+  font-size: 32px;
+  line-height: 1;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.starActive {
+  color: #f59e0b;
+}

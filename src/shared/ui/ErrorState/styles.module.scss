@@ -1,0 +1,51 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.compact {
+  padding: 12px;
+  gap: 6px;
+}
+
+.icon {
+  color: #f87171;
+}
+
+.title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+
+  .compact & {
+    font-size: 13px;
+  }
+}
+
+.message {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.retry {
+  margin-top: 4px;
+  padding: 8px 16px;
+  border: var(--border-default);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-purple-light);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--color-bg-button-hover);
+  }
+}
