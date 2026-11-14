@@ -6,6 +6,7 @@ import { authRepository } from "data/repositories/Auth"
 import { clearAuthSession } from "domain/Auth/clearAuthSession"
 import { useProfile } from "domain/Profile"
 import { routes } from "shared/utils/routes"
+import { useNavigate } from "react-router-dom"
 
 export const useUserMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -18,6 +19,7 @@ export const useUserMenu = () => {
   const displayName = profile?.fullName ?? profile?.authUsername ?? ""
 
   const toggle = () => setIsOpen((v) => !v)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!isOpen) return
@@ -46,7 +48,7 @@ export const useUserMenu = () => {
     e.stopPropagation()
     setIsOpen(false)
     await clearAuthSession(queryClient)
-    window.location.assign(routes.login)
+    void navigate(routes.login, { replace: true })
   }
 
   return {
