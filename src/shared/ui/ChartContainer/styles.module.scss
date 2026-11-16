@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .cardWide {
   grid-column: 1 / -1;
 }
@@ -51,4 +53,14 @@
 @keyframes pulse {
   0%, 100% { opacity: 0.3; transform: scale(0.8); }
   50%       { opacity: 1;   transform: scale(1);   }
+}
+
+@include mobile {
+  .title {
+    padding: 12px 14px 10px;
+  }
+
+  .body {
+    padding: 12px;
+  }
 }

@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .dashboard {
   display: flex;
   flex-direction: column;
@@ -88,4 +90,52 @@
 .exportRow {
   display: flex;
   justify-content: flex-end;
+}
+
+@include mobile {
+  .dashboard {
+    gap: 16px;
+  }
+
+  .kpiRow {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .chartsGrid,
+  .keywordsGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .chartWithExport {
+    min-width: 0;
+  }
+}
+
+.tableScroll {
+  width: 100%;
+}
+
+@include mobile {
+  .tableScroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tableScroll th,
+  .tableScroll td {
+    white-space: nowrap;
+  }
+}
+
+@include mobile {
+  .section {
+    gap: 12px;
+  }
+
+  .keywordsCard {
+    min-width: 0;
+  }
 }

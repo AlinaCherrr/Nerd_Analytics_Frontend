@@ -74,7 +74,8 @@ export const MyReviewsScreen = () => {
                 className={`${styles.ratingBtn} ${ratingFilter === 0 ? styles.ratingBtnActive : ""}`}
                 onClick={() => setRatingFilter(0)}
               >
-                Все оценки
+                <span className={styles.labelFull}>Все оценки</span>
+                <span className={styles.labelShort}>Все</span>
               </button>
               {RATING_OPTIONS.map((n) => (
                 <button
@@ -82,7 +83,8 @@ export const MyReviewsScreen = () => {
                   className={`${styles.ratingBtn} ${ratingFilter === n ? styles.ratingBtnActive : ""}`}
                   onClick={() => setRatingFilter(n)}
                 >
-                  {"★".repeat(n)}
+                  <span className={styles.labelFull}>{"★".repeat(n)}</span>
+                  <span className={styles.labelShort}>{n}★</span>
                 </button>
               ))}
             </div>

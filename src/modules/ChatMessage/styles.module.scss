@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .row {
   display: flex;
   align-items: flex-end;
@@ -64,5 +66,25 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@include mobile {
+  .row {
+    gap: 8px;
+  }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .bubble {
+    max-width: 85%;
+    padding: 10px 14px;
+  }
+
+  .content {
+    font-size: 15px;
   }
 }

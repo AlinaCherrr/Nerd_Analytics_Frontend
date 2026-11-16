@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .wrapper {
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -41,4 +43,32 @@
   margin-top: 4px;
   font-size: 14px;
   color: var(--color-text-secondary);
+}
+
+@include mobile {
+  .card {
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .iconWrapper {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 13px;
+  }
+}
+
+@include touch {
+  .wrapper:hover {
+    transform: none;
+  }
 }

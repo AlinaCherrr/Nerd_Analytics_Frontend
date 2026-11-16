@@ -118,32 +118,34 @@ export const AnalyticsAdminsDashboard = () => {
                 onExportPng={() => {}}
                 onExportPdf={() => {}}
               />
-              <table className={styles.slaTable}>
-                <thead>
-                  <tr>
-                    <th>Приоритет</th>
-                    <th>Ср. TTFR (мин)</th>
-                    <th>Ср. TTR (мин)</th>
-                    <th>TTFR OK %</th>
-                    <th>TTR OK %</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {adminSla.byPriority.map((row) => (
-                    <tr key={row.priority}>
-                      <td>{PRIORITY_LABELS[row.priority] ?? row.priority}</td>
-                      <td>{row.avgTtfr.toFixed(0)}</td>
-                      <td>{row.avgTtr.toFixed(0)}</td>
-                      <td style={{ color: getCompliancePctColor(row.slaTtfrCompliancePct) }}>
-                        {row.slaTtfrCompliancePct.toFixed(1)}%
-                      </td>
-                      <td style={{ color: getCompliancePctColor(row.slaTtrCompliancePct) }}>
-                        {row.slaTtrCompliancePct.toFixed(1)}%
-                      </td>
+              <div className={styles.tableScroll}>
+                <table className={styles.slaTable}>
+                  <thead>
+                    <tr>
+                      <th>Приоритет</th>
+                      <th>Ср. TTFR (мин)</th>
+                      <th>Ср. TTR (мин)</th>
+                      <th>TTFR OK %</th>
+                      <th>TTR OK %</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {adminSla.byPriority.map((row) => (
+                      <tr key={row.priority}>
+                        <td>{PRIORITY_LABELS[row.priority] ?? row.priority}</td>
+                        <td>{row.avgTtfr.toFixed(0)}</td>
+                        <td>{row.avgTtr.toFixed(0)}</td>
+                        <td style={{ color: getCompliancePctColor(row.slaTtfrCompliancePct) }}>
+                          {row.slaTtfrCompliancePct.toFixed(1)}%
+                        </td>
+                        <td style={{ color: getCompliancePctColor(row.slaTtrCompliancePct) }}>
+                          {row.slaTtrCompliancePct.toFixed(1)}%
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
               {adminSla.topViolatedCategories.length > 0 && (
                 <div className={styles.violationsList}>

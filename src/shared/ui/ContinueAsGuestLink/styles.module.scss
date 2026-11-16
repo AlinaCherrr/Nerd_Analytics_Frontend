@@ -4,8 +4,10 @@
   left: 20px;
   z-index: 1;
 
-  @media (max-width: 480px) {
-    top: 12px;
-    left: 12px;
+@media (max-width: 768px) {
+    position: relative;
+    top: auto;
+    left: auto;
+    align-self: flex-start;
   }
 }

@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .page {
   display: flex;
   min-height: 100vh;
@@ -216,5 +218,38 @@
 
   &:hover {
     background: rgba(124, 92, 255, 0.1);
+  }
+}
+
+.header {
+  @include mobile-header;
+}
+
+@include mobile {
+  .pageTitle {
+    min-width: 0;
+    font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .content {
+    padding: 16px;
+  }
+}
+
+@include mobile {
+  .card {
+    padding: 18px 16px;
+    gap: 16px;
+  }
+
+  .cardHeader {
+    flex-wrap: wrap;
+  }
+
+  .errorState {
+    padding: 40px 16px;
   }
 }

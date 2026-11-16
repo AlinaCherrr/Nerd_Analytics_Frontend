@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .page {
   display: flex;
   min-height: 100vh;
@@ -249,5 +251,45 @@
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+.header {
+  @include mobile-header;
+}
+
+@include mobile {
+  .pageTitle {
+    min-width: 0;
+    font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .content {
+    padding: 16px;
+  }
+}
+
+@include mobile {
+  .backBar {
+    padding: 12px 16px 0;
+  }
+
+  .form {
+    gap: 18px;
+  }
+
+  .select,
+  .input,
+  .textarea {
+    font-size: 16px;
+  }
+}
+
+@include mobile {
+  .row {
+    grid-template-columns: 1fr;
   }
 }

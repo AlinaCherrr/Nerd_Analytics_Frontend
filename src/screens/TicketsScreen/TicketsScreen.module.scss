@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .page {
   display: flex;
   min-height: 100vh;
@@ -244,4 +246,69 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+  @include mobile-header;
+}
+
+@include mobile {
+  .pageTitle {
+    width: auto;
+    min-width: 0;
+    font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .content {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .toolbar {
+    gap: 8px;
+  }
+
+  .searchInput {
+    flex: 1 1 100%;
+    min-width: 0;
+    font-size: 16px;
+  }
+
+  .filterSelect {
+    flex: 1 1 0;
+    min-width: 0;
+    font-size: 16px;
+  }
+
+  .tabs {
+    flex-wrap: nowrap;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tab {
+    flex-shrink: 0;
+    gap: 5px;
+    padding: 6px 10px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .tabCount {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+  }
+
+  .emptyState {
+    padding: 48px 16px;
+  }
 }

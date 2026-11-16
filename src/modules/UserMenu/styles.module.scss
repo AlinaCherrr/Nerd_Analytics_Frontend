@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .wrapper {
   position: relative;
   display: flex;
@@ -163,5 +165,20 @@
 
   svg {
     flex-shrink: 0;
+  }
+}
+
+@include mobile {
+  .wrapper {
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  .greetingWrapper {
+    display: none;
+  }
+
+  .dropdown {
+    width: min(300px, calc(100vw - 32px));
   }
 }

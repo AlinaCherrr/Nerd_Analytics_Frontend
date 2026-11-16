@@ -1,0 +1,41 @@
+$mobile: 768px;
+$small: 480px;
+
+$burger-offset: 66px;
+
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $mobile + 1px) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media (max-width: $small) {
+    @content;
+  }
+}
+
+@mixin touch {
+  @media (hover: none) {
+    @content;
+  }
+}
+
+@mixin mobile-header {
+  @include mobile {
+    padding: 12px 16px 12px $burger-offset;
+    min-height: 66px;
+  }
+}
+
+@mixin mobile-input {
+  @include mobile {
+    font-size: 16px;
+  }
+}

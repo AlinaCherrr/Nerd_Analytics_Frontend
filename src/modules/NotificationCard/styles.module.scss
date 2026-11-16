@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .card {
   display: flex;
   align-items: flex-start;
@@ -108,4 +110,11 @@
   color: var(--color-text-secondary, #888);
   white-space: nowrap;
   padding-top: 2px;
+}
+
+@include mobile {
+  .card {
+    gap: 12px;
+    padding: 12px 14px;
+  }
 }

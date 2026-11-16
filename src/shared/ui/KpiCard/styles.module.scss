@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .card {
   display: flex;
   flex-direction: column;
@@ -41,4 +43,26 @@
 
 .placeholder .value {
   color: rgba(255, 255, 255, 0.2);
+}
+
+@include mobile {
+  .card {
+    gap: 6px;
+    min-width: 0;
+    padding: 12px 14px;
+    border-radius: 10px;
+  }
+
+  .label {
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .value {
+    font-size: 22px;
+  }
+
+  .unit {
+    font-size: 13px;
+  }
 }

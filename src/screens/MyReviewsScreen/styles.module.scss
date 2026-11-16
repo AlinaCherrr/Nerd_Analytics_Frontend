@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .page {
   display: flex;
   min-height: 100vh;
@@ -269,5 +271,106 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.labelShort {
+  display: none;
+}
+
+@include mobile {
+  .header {
+    padding: 12px 16px 12px $burger-offset;
+    min-height: 66px;
+  }
+
+  .pageTitle {
+    width: auto;
+    min-width: 0;
+    font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .content {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .statsBar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .statCard {
+    align-items: center;
+    min-width: 0;
+    padding: 8px 4px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    text-align: center;
+
+    & + & {
+      border-left: 1px solid rgba(255, 255, 255, 0.07);
+    }
+  }
+
+  .statValue {
+    font-size: 18px;
+  }
+
+  .statLabel {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .tabs,
+  .ratingFilter {
+    min-width: 0;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tab {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .ratingBtn {
+    flex-shrink: 0;
+    padding: 5px 10px;
+  }
+
+  .labelFull {
+    display: none;
+  }
+
+  .labelShort {
+    display: inline;
+  }
+
+  .emptyState {
+    padding: 48px 16px;
   }
 }

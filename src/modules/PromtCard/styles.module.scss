@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .card {
   position: relative;
   padding: 24px;
@@ -89,5 +91,38 @@
 
   &:hover {
     transform: scale(1.05);
+  }
+}
+
+@include mobile {
+  .card {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .textarea {
+    min-height: 48px;
+  }
+
+  .footer {
+    margin-top: 12px;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .iconButton,
+  .submitButton {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+}
+
+@include touch {
+  .iconButton:hover,
+  .submitButton:hover {
+    transform: none;
   }
 }

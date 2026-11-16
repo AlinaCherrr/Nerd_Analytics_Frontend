@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .page {
   display: flex;
   min-height: 100vh;
@@ -51,5 +53,23 @@
   &::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.08);
     border-radius: 4px;
+  }
+}
+
+.header {
+  @include mobile-header;
+}
+
+@include mobile {
+  .pageTitle {
+    min-width: 0;
+    font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .content {
+    padding: 16px;
   }
 }

@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .wrapper {
   position: relative;
   margin-right: 20px;
@@ -60,4 +62,68 @@
 .description {
   color: #d2c8ff;
   line-height: 1.45;
+}
+
+@include mobile {
+  .wrapper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-right: 0;
+    padding: 12px 16px 12px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(192, 132, 252, 0.15);
+    backdrop-filter: blur(24px);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.12);
+    overflow: hidden;
+  }
+
+  .glow {
+    left: -20px;
+    top: 50%;
+    width: 120px;
+    height: 90px;
+    transform: translateY(-50%);
+    filter: blur(30px);
+    opacity: 0.8;
+  }
+
+  .avatarCircle {
+    top: 0;
+    flex-shrink: 0;
+    margin-left: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid rgba(192, 132, 252, 0.3);
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .avatarImage {
+    height: 140%;
+    max-width: none;
+  }
+
+  .card {
+    width: auto;
+    min-width: 0;
+    flex: 1;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: none;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .title {
+    margin-bottom: 4px;
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 13px;
+    line-height: 1.35;
+  }
 }

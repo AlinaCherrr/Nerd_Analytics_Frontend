@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .ticketRow {
   cursor: pointer;
   background: rgba(255, 255, 255, 0.03);
@@ -56,4 +58,10 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+}
+
+@include mobile {
+  .ticketRow {
+    padding: 12px 14px;
+  }
 }

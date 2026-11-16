@@ -8,4 +8,8 @@ export interface ChatHistoryProps {
   onRetry?: () => void
   onSelect: (sessionId: string) => void
   onNewChat: () => void
+  isOpen?: boolean
+  onClose?: () => void
+  isCollapsed?: boolean
+  onCollapse?: () => void
 }

@@ -103,22 +103,24 @@ export const AnalyticsTicketsDetailDashboard = () => {
             ) : !d6?.slowestCategories.length ? (
               <div className={styles.tableMsg}>Нет данных</div>
             ) : (
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th>Категория</th>
-                    <th>Ср. TTR (мин)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {d6.slowestCategories.map((row) => (
-                    <tr key={row.category}>
-                      <td style={{ color: SLOWEST_CATEGORY_COLOR }}>{row.category}</td>
-                      <td>{row.avgTtrMin.toFixed(0)}</td>
+              <div className={styles.tableScroll}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>Категория</th>
+                      <th>Ср. TTR (мин)</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {d6.slowestCategories.map((row) => (
+                      <tr key={row.category}>
+                        <td style={{ color: SLOWEST_CATEGORY_COLOR }}>{row.category}</td>
+                        <td>{row.avgTtrMin.toFixed(0)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
 
@@ -138,30 +140,32 @@ export const AnalyticsTicketsDetailDashboard = () => {
             ) : !d6?.anomalies.length ? (
               <div className={styles.tableMsg}>Аномалий не обнаружено</div>
             ) : (
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th>Категория</th>
-                    <th>Продукт</th>
-                    <th>48ч</th>
-                    <th>Среднее</th>
-                    <th>Z</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {d6.anomalies.map((a, i) => (
-                    <tr key={i}>
-                      <td style={{ color: ANOMALY_CATEGORY_COLOR }}>{a.category}</td>
-                      <td>{a.product}</td>
-                      <td>{a.count48h}</td>
-                      <td>{a.rollingAvg.toFixed(1)}</td>
-                      <td style={{ color: getZScoreColor(a.zScore) }}>
-                        {a.zScore.toFixed(2)}
-                      </td>
+              <div className={styles.tableScroll}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>Категория</th>
+                      <th>Продукт</th>
+                      <th>48ч</th>
+                      <th>Среднее</th>
+                      <th>Z</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {d6.anomalies.map((a, i) => (
+                      <tr key={i}>
+                        <td style={{ color: ANOMALY_CATEGORY_COLOR }}>{a.category}</td>
+                        <td>{a.product}</td>
+                        <td>{a.count48h}</td>
+                        <td>{a.rollingAvg.toFixed(1)}</td>
+                        <td style={{ color: getZScoreColor(a.zScore) }}>
+                          {a.zScore.toFixed(2)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
         </div>

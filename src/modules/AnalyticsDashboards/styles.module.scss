@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .tabs {
   display: flex;
   gap: 4px;
@@ -65,5 +67,25 @@
   &::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.08);
     border-radius: 4px;
+  }
+}
+
+@include mobile {
+  .tabs {
+    padding: 10px 16px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tab {
+    flex-shrink: 0;
+    padding: 6px 12px;
+  }
+
+  .content {
+    padding: 16px;
   }
 }

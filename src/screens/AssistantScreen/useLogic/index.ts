@@ -1,4 +1,6 @@
-import { useState, useRef, useEffect } from "react"
+import {
+ useState, useRef, useEffect, useCallback 
+} from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useChatSessions } from "domain/Assistant/useChatSessions"
 import { useMessages } from "domain/Assistant/useMessages"
@@ -10,13 +12,13 @@ import { getErrorMessage } from "shared/http"
 import { TICKET_STATUS, type TicketStatus } from "data/repositories/TicketStatuses"
 import type { AssistantLocationState, TicketInfo } from "../types"
 
+const HISTORY_COLLAPSED_STORAGE_KEY = "assistant-history-collapsed"
+
 export const useAssistantScreen = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const initialMessage = (location.state as AssistantLocationState)?.initialMessage
-  const [activeSessionId, setActiveSessionId] = useState<string | null | undefined>(() =>
-    initialMessage?.trim() ? null : undefined,
-  )
+  const [activeSessionId, setActiveSessionId] = useState<string | null>(null)
   const [inputValue, setInputValue] = useState("")
   const [pendingFirstMessage, setPendingFirstMessage] = useState<string | null>(() =>
     initialMessage?.trim() ? initialMessage : null,
@@ -25,6 +27,18 @@ export const useAssistantScreen = () => {
   const [ticketTitle, setTicketTitle] = useState<string | null>(null)
   const [solutionOffered, setSolutionOffered] = useState(false)
   const [chatError, setChatError] = useState<string | null>(null)
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false)
+  const openHistory = useCallback(() => setIsHistoryOpen(true), [])
+  const closeHistory = useCallback(() => setIsHistoryOpen(false), [])
+  const [isHistoryCollapsed, setIsHistoryCollapsed] = useState(
+    () => localStorage.getItem(HISTORY_COLLAPSED_STORAGE_KEY) === "true",
+  )
+  const collapseHistory = useCallback(() => setIsHistoryCollapsed(true), [])
+  const expandHistory = useCallback(() => setIsHistoryCollapsed(false), [])
+
+  useEffect(() => {
+    localStorage.setItem(HISTORY_COLLAPSED_STORAGE_KEY, JSON.stringify(isHistoryCollapsed))
+  }, [isHistoryCollapsed])
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const autoSentRef = useRef(false)
 
@@ -35,8 +49,7 @@ export const useAssistantScreen = () => {
     refetch: refetchSessions,
   } = useChatSessions()
 
-  const effectiveSessionId =
-    activeSessionId !== undefined ? activeSessionId : (sessions[0]?.id ?? null)
+  const effectiveSessionId = activeSessionId
   const activeSession = sessions.find((s) => s.id === effectiveSessionId)
   const ticketStatus = ticketStatusOverride ?? activeSession?.ticketStatus ?? null
 
@@ -193,5 +206,11 @@ export const useAssistantScreen = () => {
     handleNewChat,
     handleSelectSession,
     handleResolve,
+    isHistoryOpen,
+    openHistory,
+    closeHistory,
+    isHistoryCollapsed,
+    collapseHistory,
+    expandHistory,
   }
 }

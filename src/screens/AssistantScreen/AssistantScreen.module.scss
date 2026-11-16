@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .page {
   display: flex;
   min-height: 100vh;
@@ -406,4 +408,100 @@
   border: 1px dashed rgba(248, 113, 113, 0.3);
   font-size: 13px;
   color: var(--color-text-tertiary);
+}
+
+.historyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  margin-right: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-secondary, #888);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  animation: fadeIn 0.2s ease-out;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-white, #fff);
+  }
+}
+
+@include mobile {
+  .page {
+    min-height: 0;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .mainHeader {
+    gap: 8px;
+    padding: 12px 12px 12px $burger-offset;
+    min-height: 66px;
+  }
+
+  .historyButton {
+    width: 40px;
+    height: 40px;
+    margin-right: 0;
+    color: var(--color-text-white);
+  }
+
+  .chatTitle {
+    margin-right: 0;
+  }
+
+  .sessionTitle {
+    font-size: 16px;
+  }
+
+  .messagesArea {
+    padding: 12px;
+  }
+
+  .emptyState {
+    padding: 32px 12px;
+  }
+
+  .emptyIcon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .emptyTitle {
+    font-size: 20px;
+  }
+
+  .emptySubtitle {
+    font-size: 14px;
+  }
+
+  .pendingBubble {
+    max-width: 85%;
+  }
+
+  .pendingAvatar,
+  .typingAvatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .escalationFields {
+    grid-template-columns: 1fr;
+  }
+
+  .escalationSelect,
+  .escalationInput {
+    font-size: 16px;
+  }
+
+  .systemBanner {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
 }

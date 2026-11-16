@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .wrapper {
   padding: 12px 20px 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -186,5 +188,34 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@include mobile {
+  .wrapper {
+    padding: 8px 12px 12px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .textarea {
+    font-size: 16px;
+  }
+
+  .iconAction {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sendButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .fileChip {
+    max-width: 160px;
+  }
+
+  .hint {
+    display: none;
   }
 }

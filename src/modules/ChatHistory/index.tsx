@@ -1,4 +1,7 @@
-import { MessageSquare, Plus } from "lucide-react"
+import {
+ MessageSquare, PanelLeftClose, Plus, X 
+} from "lucide-react"
+import { useCallback } from "react"
 import clsx from "clsx"
 import styles from "./styles.module.scss"
 import type { ChatHistoryProps } from "./types"
@@ -6,6 +9,7 @@ import { useChatHistory } from "./useLogic/useChatHistory"
 import { HISTORY_TITLE, NEW_CHAT_LABEL, STATUS_CLASS } from "./constants"
 import { useTicketStatuses } from "domain/TicketStatuses"
 import { ErrorState } from "shared/ui/ErrorState"
+import { useDrawer, useIsMobile } from "shared/hooks/useMediaQuery"
 
 export const ChatHistory = ({
   sessions,
@@ -15,21 +19,68 @@ export const ChatHistory = ({
   onRetry,
   onSelect,
   onNewChat,
+  isOpen = false,
+  onClose,
+  isCollapsed = false,
+  onCollapse,
 }: ChatHistoryProps) => {
-  const { handleSelect, handleNewChat } = useChatHistory({ onSelect, onNewChat })
+  const { handleSelect, handleNewChat } = useChatHistory({ onSelect, onNewChat, onClose })
   const { getLabel } = useTicketStatuses()
+  const isMobile = useIsMobile()
+  const isDrawerOpen = isMobile && isOpen
+  const handleClose = useCallback(() => onClose?.(), [onClose])
+  useDrawer(isDrawerOpen, handleClose)
+  const isDesktopCollapsed = !isMobile && isCollapsed
+  const isHidden = (isMobile && !isDrawerOpen) || isDesktopCollapsed
 
   return (
-    <aside className={styles.panel}>
+    <>
+    <div
+      className={clsx(styles.backdrop, isDrawerOpen && styles.backdropVisible)}
+      onClick={handleClose}
+      aria-hidden="true"
+    />
+    <aside
+      className={clsx(
+        styles.panel,
+        isDrawerOpen && styles.panelOpen,
+        isDesktopCollapsed && styles.panelCollapsed,
+      )}
+      inert={isHidden ? true : undefined}
+    >
       <div className={styles.header}>
         <span className={styles.title}>{HISTORY_TITLE}</span>
-        <button
-          className={styles.newChatButton}
-          onClick={handleNewChat}
-          title={NEW_CHAT_LABEL}
-        >
-          <Plus size={18} />
-        </button>
+        <div className={styles.headerActions}>
+          <button
+            className={styles.newChatButton}
+            onClick={handleNewChat}
+            title={NEW_CHAT_LABEL}
+          >
+            <Plus size={18} />
+          </button>
+          {isMobile ? (
+            <button
+              type="button"
+              className={styles.closeButton}
+              onClick={handleClose}
+              aria-label="Закрыть историю"
+            >
+              <X size={18} />
+            </button>
+          ) : (
+            onCollapse && (
+              <button
+                type="button"
+                className={styles.collapseButton}
+                onClick={onCollapse}
+                title="Скрыть историю"
+                aria-label="Скрыть историю"
+              >
+                <PanelLeftClose size={18} />
+              </button>
+            )
+          )}
+        </div>
       </div>
 
       <div className={styles.list}>
@@ -80,5 +131,6 @@ export const ChatHistory = ({
           })}
       </div>
     </aside>
+    </>
   )
 }

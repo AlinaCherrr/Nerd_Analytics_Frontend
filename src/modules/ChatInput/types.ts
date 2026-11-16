@@ -3,7 +3,6 @@ export interface ChatInputProps {
   onChange: (value: string) => void
   onSubmit: (files: File[]) => void
   disabled?: boolean
-  /** Идёт отправка сообщения — показывает спиннер на кнопке отправки */
   loading?: boolean
   placeholder?: string
 }

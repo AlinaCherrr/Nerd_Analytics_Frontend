@@ -1,5 +1,5 @@
 import {
- Bot, User2, CheckCircle, Clock, AlertTriangle 
+ Bot, User2, CheckCircle, Clock, AlertTriangle, History, PanelLeftOpen 
 } from "lucide-react"
 import styles from "./AssistantScreen.module.scss"
 import { Sidebar, UserMenu } from "modules"
@@ -8,6 +8,7 @@ import { ChatMessage } from "modules/ChatMessage"
 import { ChatInput } from "modules/ChatInput"
 import { ErrorBoundary } from "shared/ui/ErrorBoundary"
 import { ErrorState } from "shared/ui/ErrorState"
+import { useIsMobile } from "shared/hooks/useMediaQuery"
 import { useAssistantScreen } from "./useLogic"
 
 export const AssistantScreen = () => {
@@ -38,7 +39,15 @@ export const AssistantScreen = () => {
     handleNewChat,
     handleSelectSession,
     handleResolve,
+    isHistoryOpen,
+    openHistory,
+    closeHistory,
+    isHistoryCollapsed,
+    collapseHistory,
+    expandHistory,
   } = useAssistantScreen()
+  const isMobile = useIsMobile()
+  const showHistoryButton = isMobile || isHistoryCollapsed
 
   return (
     <div className={styles.page}>
@@ -57,11 +66,26 @@ export const AssistantScreen = () => {
           onRetry={refetchSessions}
           onSelect={handleSelectSession}
           onNewChat={handleNewChat}
+          isOpen={isHistoryOpen}
+          onClose={closeHistory}
+          isCollapsed={isHistoryCollapsed}
+          onCollapse={collapseHistory}
         />
       </ErrorBoundary>
 
       <main className={styles.main}>
         <div className={styles.mainHeader}>
+          {showHistoryButton && (
+            <button
+              type="button"
+              className={styles.historyButton}
+              onClick={isMobile ? openHistory : expandHistory}
+              title={isMobile ? undefined : "Показать историю"}
+              aria-label={isMobile ? "История чатов" : "Показать историю"}
+            >
+              {isMobile ? <History size={20} /> : <PanelLeftOpen size={20} />}
+            </button>
+          )}
           <div className={styles.chatTitle}>
             {activeSession ? (
               <h1 className={styles.sessionTitle}>{ticketTitle ?? activeSession.title}</h1>

@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .sidebar {
   position: sticky;
   top: 0;
@@ -160,5 +162,128 @@
 
   &:active {
     transform: scale(0.95);
+  }
+}
+
+.burger,
+.backdrop,
+.closeButton {
+  display: none;
+}
+
+.burger {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 900;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--color-purple-glow);
+  background: rgba(7, 3, 17, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--color-text-white);
+}
+
+.burgerDot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-purple-accent);
+  animation: pulse 2s infinite;
+}
+
+.closeButton {
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: var(--color-text-white);
+  flex-shrink: 0;
+}
+
+@include mobile {
+  .burger {
+    display: flex;
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1300;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .backdropVisible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1400;
+    width: min(300px, 85vw);
+    height: 100vh;
+    height: 100dvh;
+    padding: 16px;
+    overflow-y: auto;
+    transform: translateX(-105%);
+    transition: transform 0.28s ease;
+  }
+
+  .sidebar.mobileOpen {
+    transform: translateX(0);
+  }
+
+  .logoContainer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .logo {
+    width: auto;
+    max-width: 170px;
+    max-height: 48px;
+  }
+
+  .closeButton {
+    display: flex;
+  }
+
+  .navigation {
+    gap: 8px;
+  }
+
+  .navItem {
+    padding: 14px 16px;
+  }
+
+  .left span {
+    white-space: nowrap;
+  }
+
+  .toggleButton {
+    display: none;
+  }
+}
+
+@include touch {
+  .navLink:hover {
+    transform: none;
   }
 }

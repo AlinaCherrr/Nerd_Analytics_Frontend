@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .page {
   position: relative;
   display: flex;
@@ -210,5 +212,53 @@
     &:hover {
       color: var(--color-purple-light);
     }
+  }
+}
+
+@include mobile {
+  .page {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 16px;
+  }
+
+  .card {
+    margin: auto 0;
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .logo {
+    margin-bottom: 12px;
+
+    img {
+      height: 64px;
+    }
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    margin-bottom: 24px;
+  }
+
+  .field {
+    margin-bottom: 16px;
+  }
+
+  .input,
+  .select {
+    font-size: 16px;
+  }
+
+  .blob1,
+  .blob2 {
+    width: 240px;
+    height: 240px;
   }
 }

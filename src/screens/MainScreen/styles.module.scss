@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .page {
   display: flex;
   min-height: 100vh;
@@ -113,3 +115,83 @@
   transform: translate(-50%, -50%);
 }
 
+
+@include mobile {
+  .page {
+    overflow-x: clip;
+  }
+
+  .main {
+    min-width: 0;
+    padding: 12px 16px 24px;
+  }
+
+  .mainHeader {
+    display: flex;
+    justify-content: flex-end;
+    min-height: 42px;
+    margin-bottom: 16px;
+  }
+
+  .helloSection {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .helloLeftContent {
+    display: contents;
+  }
+
+  .hero {
+    order: 1;
+    margin-bottom: 0;
+  }
+
+  .helpCardWrapper {
+    order: 2;
+  }
+
+  .helloLeftContent > :last-child {
+    order: 3;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .section {
+    margin-bottom: 28px;
+  }
+
+  .sectionTitle {
+    margin-bottom: 14px;
+    font-size: 22px;
+  }
+
+  .actionsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .faqList {
+    gap: 10px;
+  }
+
+  .blob1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .blob3 {
+    width: 200px;
+    height: 160px;
+    right: -60px;
+  }
+}
+
+@include small {
+  .title {
+    font-size: 24px;
+  }
+}

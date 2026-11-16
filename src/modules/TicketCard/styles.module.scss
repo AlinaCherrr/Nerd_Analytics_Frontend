@@ -1,3 +1,5 @@
+@use "shared/styles/breakpoints" as *;
+
 .card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -133,5 +135,22 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@include mobile {
+  .card {
+    padding: 14px 16px;
+  }
+
+  .cardHeader,
+  .cardFooter {
+    flex-wrap: wrap;
+  }
+}
+
+@include touch {
+  .card:hover {
+    transform: none;
   }
 }
