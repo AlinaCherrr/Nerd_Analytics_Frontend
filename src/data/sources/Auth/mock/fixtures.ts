@@ -5,8 +5,7 @@ export const MOCK_USER_DTO: UserDto = {
   username: "mock_employee",
   role: "employee",
   email: "mock.employee@nerd-analytics.local",
-  full_name: "Алина",
-  city: "Москва",
+  full_name: "Тест Тестович",
   created_at: "2025-01-01T00:00:00Z",
 }
 

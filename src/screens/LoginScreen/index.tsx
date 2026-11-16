@@ -3,6 +3,7 @@ import { routes } from "shared/utils/routes"
 import { ContinueAsGuestLink } from "shared/ui/ContinueAsGuestLink"
 import styles from "./styles.module.scss"
 import { useLoginScreen } from "./useLogic"
+import { IS_MOCK } from "shared/utils"
 
 export const LoginScreen = () => {
   const {
@@ -31,7 +32,11 @@ export const LoginScreen = () => {
         </div>
 
         <h1 className={styles.title}>Добро пожаловать</h1>
-        <p className={styles.subtitle}>Войдите в свой аккаунт</p>
+        {IS_MOCK ?
+          <p className={styles.subtitle}>Демонстрационный вариант - подходит любой логин и пароль</p>
+          :
+          <p className={styles.subtitle}>Войдите в свой аккаунт</p>
+        }
 
         {error && <div className={styles.error}>{error}</div>}
 
